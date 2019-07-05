@@ -1,6 +1,6 @@
 ---
 ansible_host: localhost
 f5_username: admin
-f5_password: mypassword
+f5_password: yourpassword
 f5_server_port: 443
 validate_certs: no
