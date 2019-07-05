@@ -1,4 +1,4 @@
-# Remote BIG-IP UCS backup using Ansible and a Docker container
+# Remote BIG-IP UCS backup using Ansible in a Docker container
 
 ## Dependencies
 - Ansible 2.5
@@ -10,4 +10,4 @@
 - The BIG-IP must already be configured with a management address, and must already have a strong password set if using BIG-IP v14+
 
 ## Usage
-Update the playbook.yml and hosts.ini accordingly for your environment. Run `./backup.sh` first. Once the container is up, `cd ansible-bigip-remote-backup` then run `ansible-playbook /home/snops/ansible-bigip-remote-backup/playbook.yml` inside the container.
+Update the playbook.yml, group_vars/big-ips.yml and inventory/hosts file accordingly for your environment. Run `./backup.sh` first. Once the container is up, `cd ansible-bigip-remote-backup` then run `ansible-playbook /home/snops/ansible-bigip-remote-backup/playbook.yml` inside the container.
