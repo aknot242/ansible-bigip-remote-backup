@@ -4,6 +4,8 @@
   connection: local
 
   vars:
+    backup_file: my_backup.ucs
+    local_path: ./
     provider:
       password: "{{ f5_password }}"
       server: "{{ inventory_hostname }}"
@@ -14,15 +16,15 @@
   tasks:
     - name: Create and Download a new UCS
       bigip_ucs_fetch:
-        src: my_backup.ucs
-        dest: ./ucs_backup.ucs
+        src: "{{ backup_file }}"
+        dest: "{{ local_path }}{{ backup_file }}"
         create_on_missing: yes
         provider: "{{ provider }}"
       delegate_to: localhost
 
     - name: Remove created UCS file
       bigip_ucs:
-        ucs: my_backup.ucs
+        ucs: "{{ backup_file }}"
         state: absent
         provider: "{{ provider }}"
       delegate_to: localhost
