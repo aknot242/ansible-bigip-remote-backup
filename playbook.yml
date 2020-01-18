@@ -1,30 +1,17 @@
 ---
-- name: Create, download, and delete backups
-  hosts: big-ips
-  connection: local
-
-  vars:
-    backup_file: my_backup.ucs
-    local_path: ./
-    provider:
-      password: "{{ f5_password }}"
-      server: "{{ inventory_hostname }}"
-      user: "{{ f5_username }}"
-      validate_certs: "{{ validate_certs }}"
-      server_port: "{{ f5_server_port }}"
-
+- hosts: big_ips
   tasks:
     - name: Create and Download a new UCS
       bigip_ucs_fetch:
         src: "{{ backup_file }}"
         dest: "{{ local_path }}{{ backup_file }}"
         create_on_missing: yes
-        provider: "{{ provider }}"
+        provider: "{{ bigip_provider }}"
       delegate_to: localhost
 
     - name: Remove created UCS file
       bigip_ucs:
         ucs: "{{ backup_file }}"
         state: absent
-        provider: "{{ provider }}"
+        provider: "{{ bigip_provider }}"
       delegate_to: localhost
